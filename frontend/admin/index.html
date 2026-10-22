@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | Kamla Ganga Interprises</title>
+<meta name="robots" content="noindex, nofollow">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;700&family=Manrope:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../css/style.css">
+<style>
+  body{ background:var(--paper); }
+  .admin-shell{ display:flex; min-height:100vh; }
+  .admin-side{ width:250px; background:var(--navy-deep); color:#fff; padding:28px 0; flex:none; }
+  .admin-side .brand{ color:#fff; padding:0 24px 28px; border-bottom:1px solid var(--line-on-dark); margin-bottom:14px; }
+  .admin-nav a{ display:flex; align-items:center; gap:12px; padding:13px 24px; font-size:13.5px; color:rgba(247,246,242,.7); border-left:2px solid transparent; }
+  .admin-nav a.active,.admin-nav a:hover{ color:#fff; border-left-color:var(--gold); background:rgba(228,192,90,.06); }
+  .admin-main{ flex:1; padding:36px 40px; }
+  .admin-top{ display:flex; justify-content:space-between; align-items:center; margin-bottom:32px; }
+  .kpi-grid{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin-bottom:36px; }
+  .kpi{ border:1px solid var(--line); padding:22px; background:var(--paper); }
+  .kpi span{ font-family:var(--font-mono); font-size:11px; color:var(--slate); letter-spacing:.06em; text-transform:uppercase; }
+  .kpi b{ display:block; font-family:var(--font-display); font-size:30px; margin-top:8px; }
+  table{ width:100%; border-collapse:collapse; border:1px solid var(--line); background:var(--paper); }
+  th,td{ text-align:left; padding:14px 16px; font-size:13.5px; border-bottom:1px solid var(--line); }
+  th{ font-family:var(--font-mono); font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--slate); }
+  .badge{ font-size:11px; padding:4px 10px; font-family:var(--font-mono); }
+  .badge.new{ background:var(--gold); color:var(--navy-deep); }
+  .badge.contacted{ background:var(--navy); color:#fff; }
+  .login-wrap{ min-height:100vh; display:flex; align-items:center; justify-content:center; background:var(--navy-deep); }
+  .login-card{ width:360px; border:1px solid var(--line-on-dark); padding:44px; background:var(--navy); }
+  .login-card h2{ color:#fff; font-size:24px; }
+  .login-card p{ color:var(--slate-light); font-size:13px; margin-top:8px; }
+  .login-card .field{ margin-top:20px; }
+  .login-card .field label{ color:var(--gold-bright); font-family:var(--font-mono); font-size:11px; text-transform:uppercase; }
+  .login-card input{ color:#fff; border-color:var(--line-on-dark); width:100%; margin-top:8px; }
+</style>
+</head>
+<body>
+
+<!-- LOGIN VIEW -->
+<div class="login-wrap" id="loginView">
+  <div class="login-card">
+    <h2>Admin Login</h2>
+    <p>Kamla Ganga Interprises — Admin Panel</p>
+    <form id="loginForm">
+      <div class="field"><label>Email</label><input type="email" required placeholder="admin@kamlagangainterprises.com"></div>
+      <div class="field"><label>Password</label><input type="password" required placeholder="••••••••"></div>
+      <button type="submit" class="btn btn-gold btn-block" style="margin-top:26px;">Sign In</button>
+    </form>
+    <p style="margin-top:18px;font-size:12px;">Demo only — connect to <code>POST /api/auth/login</code> (JWT + bcrypt) in the backend.</p>
+  </div>
+</div>
+
+<!-- DASHBOARD VIEW -->
+<div class="admin-shell" id="dashView" style="display:none;">
+  <aside class="admin-side">
+    <div class="brand"><span class="brand-mark"><span>KG</span></span><span>Admin Panel</span></div>
+    <nav class="admin-nav">
+      <a class="active" href="#">Dashboard Overview</a>
+      <a href="#">Manage Projects</a>
+      <a href="#">Manage Gallery</a>
+      <a href="#">Manage Services</a>
+      <a href="#">Client Enquiries</a>
+      <a href="#">Testimonials</a>
+      <a href="#">Cost Estimator Settings</a>
+      <a href="#">Contact Information</a>
+      <a href="#">Analytics</a>
+      <a href="#" id="logoutBtn" style="margin-top:20px;border-top:1px solid var(--line-on-dark);padding-top:20px;">Log Out</a>
+    </nav>
+  </aside>
+  <main class="admin-main">
+    <div class="admin-top">
+      <div><h2 style="font-size:24px;">Dashboard Overview</h2><p style="color:var(--slate);font-size:13.5px;margin-top:4px;">Welcome back, Admin.</p></div>
+      <a href="../index.html" class="btn btn-outline btn-sm">View Live Site</a>
+    </div>
+    <div class="kpi-grid">
+      <div class="kpi"><span>New Enquiries</span><b>18</b></div>
+      <div class="kpi"><span>Active Projects</span><b>7</b></div>
+      <div class="kpi"><span>Gallery Items</span><b>64</b></div>
+      <div class="kpi"><span>Avg. Estimate Requests / wk</span><b>32</b></div>
+    </div>
+    <h3 style="font-size:17px;margin-bottom:14px;">Recent Client Enquiries</h3>
+    <table>
+      <thead><tr><th>Name</th><th>Phone</th><th>Service</th><th>City</th><th>Status</th></tr></thead>
+      <tbody>
+        <tr><td>Rakesh Kumar</td><td>+91 98xxxxxx21</td><td>Structural Design</td><td>Gaya</td><td><span class="badge new">New</span></td></tr>
+        <tr><td>Sunita Prasad</td><td>+91 99xxxxxx44</td><td>Government Consultancy</td><td>Patna</td><td><span class="badge contacted">Contacted</span></td></tr>
+        <tr><td>Amit Verma</td><td>+91 97xxxxxx09</td><td>3D House Modeling</td><td>Patna</td><td><span class="badge new">New</span></td></tr>
+        <tr><td>Manoj Das</td><td>+91 96xxxxxx77</td><td>Building Contract</td><td>Nalanda</td><td><span class="badge contacted">Contacted</span></td></tr>
+      </tbody>
+    </table>
+  </main>
+</div>
+
+<script>
+  document.getElementById('loginForm').addEventListener('submit', (e) => {
+    e.preventDefault();
+    document.getElementById('loginView').style.display = 'none';
+    document.getElementById('dashView').style.display = 'flex';
+    // Connect to POST /api/auth/login on your backend; store returned JWT and
+    // send it as `Authorization: Bearer <token>` on subsequent admin API calls.
+  });
+  document.getElementById('logoutBtn').addEventListener('click', (e) => {
+    e.preventDefault();
+    document.getElementById('dashView').style.display = 'none';
+    document.getElementById('loginView').style.display = 'flex';
+  });
+</script>
+</body>
+</html>
